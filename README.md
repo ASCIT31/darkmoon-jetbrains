@@ -7,7 +7,7 @@ OSS** (local `darkmoon-ci` CLI) and **Darkmoon Pro** (REST API), with Pro-only
 capabilities cleanly disabled on OSS.
 
 > One of the five official Darkmoon integrations. Built on the frozen
-> `@darkmoon/client` contract (§2.2 of the integrations plan).
+> `@darkmoon_ai/client` contract (§2.2 of the integrations plan).
 
 ## Screenshots
 
@@ -65,7 +65,7 @@ darkmoon-jetbrains/
 ### Why the Kotlin client shells out (and the bridge)
 
 The plan says *do not reimplement the TypeScript client.* Detection,
-normalization and redaction live **once**, in the shipped `@darkmoon/client`.
+normalization and redaction live **once**, in the shipped `@darkmoon_ai/client`.
 `darkmoon-client-kotlin` is therefore a **contract port plus a subprocess
 adapter**: it mirrors the frozen wire types and deserializes JSON produced by the
 JS client; it does not re-derive any backend behaviour. The Pro JWT is passed
@@ -77,7 +77,7 @@ The foundation ships two entry points:
 - **`darkmoon-ci`** — the CI-oriented binary (`detect`, `launch`, `status`,
   `summary`, `findings`, `report`, `wait`, `run`). Perfect for pipelines, but it
   has no *list all campaigns*, *single finding + evidence*, or *stream* command.
-- **`@darkmoon/client`** — the full library, which does expose the entire
+- **`@darkmoon_ai/client`** — the full library, which does expose the entire
   contract surface (verified against the real OSS data dir: 11 campaigns,
   per-campaign findings, redaction-safe by default).
 
@@ -117,7 +117,7 @@ fixtures:
    fixtures so `CliDarkmoonClient` is exercised over a real subprocess boundary,
    including redaction and the two-key opt-in (`ConformanceTest`, 18 cases).
 3. A **real end-to-end** test drives `CliDarkmoonClient` → bridge →
-   `@darkmoon/client` → the real OSS data dir when they are present on the
+   `@darkmoon_ai/client` → the real OSS data dir when they are present on the
    machine (`DarkmoonPluginTest.testRealLibraryViaBridge`; skips otherwise).
 
 ## Install (manual, before Marketplace publication)
