@@ -124,6 +124,13 @@ irreversible decisions, intentionally left out of this build:
 - The **plugin id `fr.ascit.darkmoon` is permanent** once first published;
   confirm it before that first upload.
 
+## Pass/fail policy
+
+This plugin is a browse/launch client, not a CI gate. The findings-based
+pass/fail policy (`--fail-on critical,high`, exit code `2`) is computed by the
+`darkmoon-ci` CLI and the CI/CD integrations (GitHub Actions, GitLab, Jenkins),
+never inside the IDE.
+
 ## License
 
-Proprietary — © ASC-IT. See the Darkmoon licensing terms.
+MIT © 2026 ASC-IT (SARL) / Darkmoon. See [LICENSE](LICENSE).

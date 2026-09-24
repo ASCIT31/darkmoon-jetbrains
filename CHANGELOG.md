@@ -1,6 +1,8 @@
 # Changelog
 
-## [Unreleased]
+All notable changes to the Darkmoon JetBrains plugin are documented here.
+
+## [0.1.0] - 2026-09-24
 
 ### Added
 
@@ -17,3 +19,4 @@
   infrastructure graph and no auto-PR.
 - `darkmoon-bridge.mjs`: exposes the full `@darkmoon/client` read surface to the
   plugin without reimplementing the client.
+- Licensed under MIT.
