@@ -9,6 +9,24 @@ capabilities cleanly disabled on OSS.
 > One of the five official Darkmoon integrations. Built on the frozen
 > `@darkmoon/client` contract (§2.2 of the integrations plan).
 
+## Screenshots
+
+The tool window is a native IntelliJ-platform **Swing** UI (`JBTable` + panels),
+which can only be captured from a running IDE — it does not render in a headless
+browser. To grab clean marketplace shots, run the sandbox IDE and screenshot the
+tool window (a 2-click pass):
+
+```bash
+./gradlew runIde              # launches a sandbox IDE with the plugin
+# then: View → Tool Windows → Darkmoon, click Refresh (fixtures load the
+# synthetic Demo Shop campaign), and screenshot the Campaigns / Vulnerabilities
+# / finding-detail / Reports tabs.
+```
+
+The plugin renders the **same synthetic Demo Shop dataset** and redaction model
+as the [VS Code extension](https://github.com/ASCIT31/darkmoon-vscode#screenshots);
+see that repo's Screenshots section for the equivalent views.
+
 ## What it does
 
 - **Campaigns** tab — every campaign with target, status, overall risk and
