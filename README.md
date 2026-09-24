@@ -152,3 +152,12 @@ never inside the IDE.
 ## License
 
 MIT © 2026 ASC-IT (SARL) / Darkmoon. See [LICENSE](LICENSE).
+
+## Screenshots
+
+![](https://raw.githubusercontent.com/ASCIT31/darkmoon-jetbrains/master/docs/screenshots/jetbrains-finding.png)
+
+![](https://raw.githubusercontent.com/ASCIT31/darkmoon-jetbrains/master/docs/screenshots/jetbrains-finding-revealed.png)
+
+![](https://raw.githubusercontent.com/ASCIT31/darkmoon-jetbrains/master/docs/screenshots/jetbrains-vulnerabilities.png)
+
