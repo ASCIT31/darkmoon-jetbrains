@@ -20,7 +20,7 @@
               opened only on an explicit, local, two-key action.</li>
         </ul>
         <p>Secrets are stored in the IDE's PasswordSafe, never in plugin settings or logs.</p>
-    ]]></description>
+    <br/><br/><b>Darkmoon is open-source — a star really helps.</b><br/>⭐ Star the core: <a href="https://github.com/ASCIT31/Dark-Moon">github.com/ASCIT31/Dark-Moon</a><br/>🌐 Website: <a href="https://dark-moon.org">dark-moon.org</a> · 📚 Docs: <a href="https://docs.dark-moon.org">docs.dark-moon.org</a><br/>Also on: <a href="https://marketplace.visualstudio.com/items?itemName=Darkmoon.darkmoon-vscode">VS Code</a>, <a href="https://gitlab.com/explore/catalog/Dark-Moon-X/darkmoon-scan">GitLab CI/CD</a>, <a href="https://github.com/marketplace/actions/darkmoon-pentest">GitHub Actions</a>, Jenkins, and <a href="https://www.npmjs.com/package/@darkmoon_ai/client">npm</a>.]]></description>
 
     <depends>com.intellij.modules.platform</depends>
 
