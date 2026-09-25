@@ -1,6 +1,6 @@
 # Darkmoon for JetBrains IDEs
 
-> **📦 Marketplace status:** Submitted to the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34497-darkmoon) — **in moderation**. Meanwhile, install the plugin `.zip` from [Releases](https://github.com/ASCIT31/darkmoon-jetbrains/releases).
+> **📦 Marketplace status:** **Live on the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34497-darkmoon)** (plugin 34497). You can also install the plugin `.zip` from [Releases](https://github.com/ASCIT31/darkmoon-jetbrains/releases) as a fallback.
 
 
 ## ⭐ Darkmoon ecosystem
@@ -132,7 +132,9 @@ fixtures:
    `@darkmoon_ai/client` → the real OSS data dir when they are present on the
    machine (`DarkmoonPluginTest.testRealLibraryViaBridge`; skips otherwise).
 
-## Install (manual, before Marketplace publication)
+## Install (manual, fallback)
+
+The plugin is live on the JetBrains Marketplace; use this only for a local build or an offline install.
 
 1. `./gradlew buildPlugin`
 2. In the IDE: **Settings → Plugins → ⚙ → Install Plugin from Disk…** and pick
@@ -140,19 +142,18 @@ fixtures:
 3. Configure under **Settings → Tools → Darkmoon** (mode, base URL,
    `darkmoon-ci` command, and — for Pro — the token).
 
-## Human-only publishing actions (not performed here)
+## Publishing (maintainers)
 
-Publishing to the JetBrains Marketplace requires human-owned credentials and
-irreversible decisions, intentionally left out of this build:
+The plugin is **published on the JetBrains Marketplace** (plugin 34497, id
+`fr.ascit.darkmoon`). Updates still require human-owned credentials and decisions:
 
-- A **JetBrains account** and a **vendor/organization profile** for ASC-IT.
-- The **first upload** must be done manually through the Marketplace UI (the
-  automated `publishPlugin` task works only after the plugin exists).
+- A **JetBrains account** and the **vendor/organization profile** for ASC-IT.
+- The **first upload** was done manually through the Marketplace UI; subsequent
+  updates can use the automated `publishPlugin` task.
 - A permanent **publishing token** (`PUBLISH_TOKEN`), and, for signed builds,
   the **signing key** material (`CERTIFICATE_CHAIN`, `PRIVATE_KEY`,
   `PRIVATE_KEY_PASSWORD`) — all consumed from environment variables.
-- The **plugin id `fr.ascit.darkmoon` is permanent** once first published;
-  confirm it before that first upload.
+- The **plugin id `fr.ascit.darkmoon` is permanent** now that it is published.
 
 ## Pass/fail policy
 
