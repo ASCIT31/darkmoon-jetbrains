@@ -1,5 +1,7 @@
 # Darkmoon for JetBrains IDEs
 
+> **📦 Marketplace status:** Submitted to the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34497-darkmoon) — **in moderation**. Meanwhile, install the plugin `.zip` from [Releases](https://github.com/ASCIT31/darkmoon-jetbrains/releases).
+
 
 ## ⭐ Darkmoon ecosystem
 
