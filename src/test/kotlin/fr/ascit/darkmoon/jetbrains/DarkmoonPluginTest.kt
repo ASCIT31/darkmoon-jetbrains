@@ -16,6 +16,7 @@ import fr.ascit.darkmoon.client.Features
 import fr.ascit.darkmoon.client.Finding
 import fr.ascit.darkmoon.client.FindingStatus
 import fr.ascit.darkmoon.client.Severity
+import fr.ascit.darkmoon.jetbrains.notifications.StarCta
 import fr.ascit.darkmoon.jetbrains.services.DarkmoonProjectService
 import fr.ascit.darkmoon.jetbrains.settings.DarkmoonSettings
 import fr.ascit.darkmoon.jetbrains.toolwindow.VulnerabilitiesTableModel
@@ -53,6 +54,57 @@ class DarkmoonPluginTest : BasePlatformTestCase() {
         s.baseUrl = ""
         s.cliCommand = "darkmoon-ci"
         assertEquals(listOf("darkmoon-ci"), s.commandTokens())
+    }
+
+    // ---- star CTA (growth guardrails) --------------------------------------
+
+    fun testStarCtaShownFlagDefaultsFalse() {
+        val state = DarkmoonSettings.State()
+        assertFalse("flag must default to not-yet-shown", state.starCtaShown)
+        assertTrue("growth CTA must default to enabled", state.growthCtaEnabled)
+    }
+
+    fun testStarCtaShowsOnFirstRealResult() {
+        val state = DarkmoonSettings.State()
+        assertTrue(
+            "first non-empty result with a fresh, enabled state must be eligible",
+            StarCta.shouldShowStarCta(state, findingsCount = 3, envDisabled = false),
+        )
+    }
+
+    fun testStarCtaNeverShowsOnEmptyFindings() {
+        val state = DarkmoonSettings.State()
+        assertFalse(
+            "empty findings must never trigger the CTA",
+            StarCta.shouldShowStarCta(state, findingsCount = 0, envDisabled = false),
+        )
+    }
+
+    fun testStarCtaIsOnceOnly() {
+        val state = DarkmoonSettings.State()
+        // First eligibility passes; caller then flips the flag as the real path does.
+        assertTrue(StarCta.shouldShowStarCta(state, findingsCount = 5, envDisabled = false))
+        state.starCtaShown = true
+        assertFalse(
+            "a second real result must not re-show the CTA",
+            StarCta.shouldShowStarCta(state, findingsCount = 5, envDisabled = false),
+        )
+    }
+
+    fun testStarCtaRespectsSettingOptOut() {
+        val state = DarkmoonSettings.State(growthCtaEnabled = false)
+        assertFalse(
+            "disabling the growth CTA setting must suppress it",
+            StarCta.shouldShowStarCta(state, findingsCount = 4, envDisabled = false),
+        )
+    }
+
+    fun testStarCtaRespectsEnvOptOut() {
+        val state = DarkmoonSettings.State()
+        assertFalse(
+            "the env opt-out must suppress even an otherwise-eligible CTA",
+            StarCta.shouldShowStarCta(state, findingsCount = 4, envDisabled = true),
+        )
     }
 
     // ---- table model -------------------------------------------------------
