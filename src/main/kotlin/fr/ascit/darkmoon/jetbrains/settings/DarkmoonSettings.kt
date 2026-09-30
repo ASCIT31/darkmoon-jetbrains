@@ -29,6 +29,17 @@ class DarkmoonSettings : PersistentStateComponent<DarkmoonSettings.State> {
         var cliCommand: String = "darkmoon-ci",
         /** Optional working directory (OSS settings root). Empty = inherit. */
         var workingDir: String = "",
+        /**
+         * Master switch for the non-intrusive growth CTA (the one-time GitHub star
+         * balloon shown after the first real findings). Default on; users may turn
+         * it off in settings, and the DARKMOON_DISABLE_GROWTH_CTA env var also wins.
+         */
+        var growthCtaEnabled: Boolean = true,
+        /**
+         * True once the one-time star CTA has been shown, so it never repeats
+         * (application-wide). Booleans only — no target or finding data is stored.
+         */
+        var starCtaShown: Boolean = false,
     )
 
     private var state = State()
@@ -55,6 +66,14 @@ class DarkmoonSettings : PersistentStateComponent<DarkmoonSettings.State> {
     var workingDir: String
         get() = state.workingDir
         set(value) { state.workingDir = value.trim() }
+
+    var growthCtaEnabled: Boolean
+        get() = state.growthCtaEnabled
+        set(value) { state.growthCtaEnabled = value }
+
+    var starCtaShown: Boolean
+        get() = state.starCtaShown
+        set(value) { state.starCtaShown = value }
 
     fun commandTokens(): List<String> =
         cliCommand.trim().split(Regex("\\s+")).filter { it.isNotBlank() }

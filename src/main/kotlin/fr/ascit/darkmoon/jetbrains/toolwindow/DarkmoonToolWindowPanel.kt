@@ -19,6 +19,7 @@ import fr.ascit.darkmoon.client.Edition
 import fr.ascit.darkmoon.client.Finding
 import fr.ascit.darkmoon.client.Severity
 import fr.ascit.darkmoon.jetbrains.DarkmoonBundle
+import fr.ascit.darkmoon.jetbrains.notifications.StarCta
 import fr.ascit.darkmoon.jetbrains.services.DarkmoonProjectService
 import fr.ascit.darkmoon.jetbrains.settings.DarkmoonSettings
 import java.awt.BorderLayout
@@ -220,6 +221,11 @@ class DarkmoonToolWindowPanel(private val project: Project) : JPanel(BorderLayou
             override fun onSuccess() {
                 vulnModel.setFindings(findings)
                 if (error != null) statusLabel.text = "Findings error: $error"
+                // First real result: offer a one-time, non-intrusive GitHub star CTA.
+                // Guarded (non-empty + once-only + opt-out) inside; fail-safe there.
+                if (error == null && findings.isNotEmpty()) {
+                    StarCta.maybeShowStarCta(project, findings.size)
+                }
             }
         }.queue()
     }

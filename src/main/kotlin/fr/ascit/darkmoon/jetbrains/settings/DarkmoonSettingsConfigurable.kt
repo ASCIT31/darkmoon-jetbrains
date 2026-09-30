@@ -8,6 +8,7 @@ import com.intellij.ui.components.JBPasswordField
 import com.intellij.ui.components.JBTextField
 import com.intellij.util.ui.FormBuilder
 import java.awt.Dimension
+import javax.swing.JCheckBox
 import javax.swing.JComponent
 import javax.swing.JPanel
 import javax.swing.event.DocumentEvent
@@ -25,6 +26,7 @@ class DarkmoonSettingsConfigurable : Configurable {
     private val cliCommandField = JBTextField()
     private val workingDirField = JBTextField()
     private val tokenField = JBPasswordField()
+    private val growthCtaCheckbox = JCheckBox("Show the one-time GitHub star suggestion after the first findings")
 
     private var tokenTouched = false
     private var panel: JPanel? = null
@@ -50,6 +52,8 @@ class DarkmoonSettingsConfigurable : Configurable {
             .addLabeledComponent(JBLabel("Working directory:"), workingDirField, 1, false)
             .addLabeledComponent(JBLabel("Pro token (JWT):"), tokenField, 1, false)
             .addComponentToRightColumn(JBLabel("Stored in the IDE PasswordSafe, never in plugin settings."))
+            .addComponent(growthCtaCheckbox)
+            .addComponentToRightColumn(JBLabel("Can also be disabled with the DARKMOON_DISABLE_GROWTH_CTA environment variable."))
             .addComponentFillVertically(JPanel(), 0)
             .panel
         built.preferredSize = Dimension(560, 260)
@@ -64,7 +68,8 @@ class DarkmoonSettingsConfigurable : Configurable {
             modeCombo.selectedItem != s.mode.wire ||
             baseUrlField.text != s.baseUrl ||
             cliCommandField.text != s.cliCommand ||
-            workingDirField.text != s.workingDir
+            workingDirField.text != s.workingDir ||
+            growthCtaCheckbox.isSelected != s.growthCtaEnabled
     }
 
     override fun apply() {
@@ -73,6 +78,7 @@ class DarkmoonSettingsConfigurable : Configurable {
         s.baseUrl = baseUrlField.text
         s.cliCommand = cliCommandField.text
         s.workingDir = workingDirField.text
+        s.growthCtaEnabled = growthCtaCheckbox.isSelected
         if (tokenTouched) {
             val token = String(tokenField.password)
             // PasswordSafe is blocking → off the EDT.
@@ -89,6 +95,7 @@ class DarkmoonSettingsConfigurable : Configurable {
         baseUrlField.text = s.baseUrl
         cliCommandField.text = s.cliCommand
         workingDirField.text = s.workingDir
+        growthCtaCheckbox.isSelected = s.growthCtaEnabled
         tokenField.text = ""
         tokenTouched = false
         // Load the stored token off the EDT, then reflect it back on the EDT.
