@@ -174,3 +174,18 @@ MIT © 2026 ASC-IT (SARL) / Darkmoon. See [LICENSE](LICENSE).
 
 ![](https://raw.githubusercontent.com/ASCIT31/darkmoon-jetbrains/master/docs/screenshots/jetbrains-vulnerabilities.png)
 
+
+## 🎥 Video tutorial
+
+[![Watch the Darkmoon + JetBrains tutorial on YouTube](https://img.youtube.com/vi/obUUrbTN3Jg/maxresdefault.jpg)](https://youtu.be/obUUrbTN3Jg)
+
+▶ **[Watch the full Darkmoon + JetBrains tutorial on YouTube](https://youtu.be/obUUrbTN3Jg)** — real setup, end to end.
+
+## Darkmoon ecosystem
+
+Darkmoon is an open-source, AI-powered penetration testing platform. It runs a full autonomous assessment and this integration brings the results into your JetBrains workflow.
+
+- ⭐ **Flagship (star it):** https://github.com/ASCIT31/Dark-Moon
+- 📚 **Docs:** https://docs.dark-moon.org
+- 🌐 **Website:** https://dark-moon.org
+- 🔗 **Related integrations:** [VS Code](https://github.com/ASCIT31/darkmoon-vscode) · [SDK / CLI](https://github.com/ASCIT31/darkmoon-client) 
